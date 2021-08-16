@@ -47,9 +47,6 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
   const [nextPage, setNextPage] = useState(postsPagination.next_page);
   const [currentPage, setCurrentPage] = useState(1);
 
-  console.log('nextPage', nextPage);
-  console.log(currentPage);
-
   async function handleNextPage(): Promise<void> {
     if (currentPage !== 1 && nextPage === null) {
       return;
@@ -139,8 +136,6 @@ export const getStaticProps: GetStaticProps = async () => {
       },
     };
   });
-
-  console.log('POSTS', posts);
 
   const postsPagination = {
     next_page: postsResponse.next_page,
