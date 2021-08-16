@@ -68,27 +68,29 @@ export default function Post({ post }: PostProps): JSX.Element {
         <title>{post.data.title} | spacetraveling</title>
       </Head>
       <Header />
-      <img
-        src={post.data.banner.url}
-        alt={`imagem - ${post.data.title}`}
-        title={`imagem - ${post.data.title}`}
-      />
-      <main>
+      <main className={styles.container}>
         <div>
+          <img
+            src={post.data.banner.url}
+            alt={`imagem - ${post.data.title}`}
+            title={`imagem - ${post.data.title}`}
+          />
+        </div>
+        <div className={`${commonStyles.container} ${styles.postContainer}`}>
           <div>
             <h1>{post.data.title}</h1>
             <ul>
               <li>
                 <FiCalendar />
-                {formatedDate}
+                <span>{formatedDate}</span>
               </li>
               <li>
                 <FiUser />
-                {post.data.author}
+                <span>{post.data.author}</span>
               </li>
               <li>
                 <FiClock />
-                {`${readTime} min`}
+                <span>{`${readTime} min`}</span>
               </li>
             </ul>
           </div>

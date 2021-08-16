@@ -1,1 +1,56 @@
-// TODO
+.container{
+  width: 100%;
+
+  > div:first-child{
+    height: 400px;
+    overflow: hidden;
+    img{
+      width: 100%;
+    }
+  }
+}
+
+.postContainer{
+  margin-top: 5rem;
+  text-align: justify;
+
+  h1{
+    color: var(--Heading);
+    font-size: 3rem; //48px
+    font-weight: bold;
+    letter-spacing: -0.5px;
+  }
+
+  ul{
+    display: flex;
+    margin-top: 1.5rem;
+    gap: 1.5rem;
+    list-style: none;
+
+    li{
+      color: var(--Info);
+      span{
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
+  article{
+    margin-top: 4rem;
+    
+    h2{
+      font-size: 2.25rem;
+      font-weight: bold;
+      color: var(--Heading);
+      margin-bottom: 2.5rem;
+    }
+
+    div{
+      color: var(--Body);
+      font-size: 1.125rem; //18px
+      margin-bottom: 5rem;
+      line-height: 140%;
+      text-align: justify;
+    }
+  }
+}
