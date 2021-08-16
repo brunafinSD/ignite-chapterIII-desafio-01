@@ -27,7 +27,7 @@ Rodar os testes:
 
 Como ficou:
 ## home 
-![ScreenShot]({https://github.com/brunafinSD/ignite-chapterIII-desafio-01/blob/master/public/images/home.png?raw=true})
+![ScreenShot](https://github.com/brunafinSD/ignite-chapterIII-desafio-01/blob/master/public/images/home.png?raw=true)
 
 ## página post
-![ScreenShot]({https://github.com/brunafinSD/ignite-chapterIII-desafio-01/blob/master/public/images/post.png?raw=true})
+![ScreenShot](https://github.com/brunafinSD/ignite-chapterIII-desafio-01/blob/master/public/images/post.png?raw=true)
