@@ -87,25 +87,27 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
       <Head>
         <title>Home | spacetraveling</title>
       </Head>
-      <main>
+      <main className={commonStyles.container}>
         <Header />
-        <div>
+        <div className={commonStyles.postContainer}>
           {posts.map(post => (
             <Link href={`/post/${post.uid}`} key={post.uid}>
-              <a>
-                <strong>{post.data.title}</strong>
-                <p>{post.data.subtitle}</p>
-                <ul>
-                  <li>
-                    <FiCalendar />
-                    {post.first_publication_date}
-                  </li>
-                  <li>
-                    <FiUser />
-                    {post.data.author}
-                  </li>
-                </ul>
-              </a>
+              <div>
+                <a>
+                  <strong>{post.data.title}</strong>
+                  <p>{post.data.subtitle}</p>
+                  <ul>
+                    <li>
+                      <FiCalendar />
+                      <span>{post.first_publication_date}</span>
+                    </li>
+                    <li>
+                      <FiUser />
+                      <span>{post.data.author}</span>
+                    </li>
+                  </ul>
+                </a>
+              </div>
             </Link>
           ))}
         </div>

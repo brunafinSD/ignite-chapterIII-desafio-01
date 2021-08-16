@@ -1,1 +1,56 @@
-// TODO
+.container{
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: justify;
+
+  button{
+    margin-bottom: 5rem;
+    color: var(--Highlight);
+    background: none;
+    border: none;
+    font-size: 1.125rem; //18px
+    font-weight: 600;
+  }
+}
+
+.postContainer{
+  margin-top: 4rem;
+  text-align: justify;
+  
+  div{
+
+    & + div{
+      margin-top: 3rem;
+    }
+
+    &:last-child{
+      margin-bottom: 4rem;
+    }
+
+    strong{
+      color: var(--Heading);
+      font-size: 1.75rem; //28px
+      font-weight: bold;
+      letter-spacing: -0.5px;
+    }
+
+    p{
+      color: var(--Body);
+      font-size: 1.125rem; //18px
+      margin-top: 0.5rem;
+    }
+
+    ul{
+      display: flex;
+      margin-top: 1.5rem;
+      gap: 1.5rem;
+
+      li{
+        color: var(--Info);
+        span{
+          margin-left: 0.5rem;
+        }
+      }
+    }
+  }
+}
