@@ -89,7 +89,7 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
       </Head>
       <main className={commonStyles.container}>
         <Header />
-        <div className={commonStyles.postContainer}>
+        <div className={styles.postContainer}>
           {posts.map(post => (
             <Link href={`/post/${post.uid}`} key={post.uid}>
               <div>
