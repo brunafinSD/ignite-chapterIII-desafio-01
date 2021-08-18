@@ -14,6 +14,7 @@ import { getPrismicClient } from '../../services/prismic';
 
 import commonStyles from '../../styles/common.module.scss';
 import styles from './post.module.scss';
+import Link from 'next/link';
 
 interface Post {
   first_publication_date: string | null;
@@ -32,12 +33,28 @@ interface Post {
   };
 }
 
+// aqui faz a tipagem das props que são recebidas
 interface PostProps {
   post: Post;
+  suggestPosts: {
+    previousPost: {
+      uid: string;
+      data: {
+        title: string;
+      };
+    }[];
+    laterPost: {
+      uid: string;
+      data: {
+        title: string;
+      };
+    }[];
+  };
 }
 
-export default function Post({ post }: PostProps): JSX.Element {
+export default function Post({ post, suggestPosts }: PostProps): JSX.Element {
   const router = useRouter();
+  console.log(suggestPosts);
 
   const totalWords = post.data.content.reduce((total, item) => {
     total += item.heading.split(' ').length;
@@ -109,6 +126,35 @@ export default function Post({ post }: PostProps): JSX.Element {
             );
           })}
         </div>
+        <section className={`${commonStyles.container} ${styles.suggestPosts}`}>
+          {suggestPosts.previousPost && suggestPosts.previousPost.length > 0 && (
+            <Link
+              href={`/post/${suggestPosts.previousPost[0]?.uid}`}
+              key={suggestPosts.previousPost[0]?.uid}
+            >
+              <div>
+                <a>
+                  <strong>{suggestPosts.previousPost[0]?.data.title}</strong>
+                  <p>Post anterior</p>
+                </a>
+              </div>
+            </Link>
+          )}
+
+          {suggestPosts.laterPost && suggestPosts.laterPost.length > 0 && (
+            <Link
+              href={`/post/${suggestPosts.laterPost[0]?.uid}`}
+              key={suggestPosts.laterPost[0]?.uid}
+            >
+              <div>
+                <a>
+                  <strong>{suggestPosts.laterPost[0]?.data.title}</strong>
+                  <p>Próximo Post</p>
+                </a>
+              </div>
+            </Link>
+          )}
+        </section>
       </main>
     </>
   );
@@ -139,6 +185,24 @@ export const getStaticProps: GetStaticProps = async context => {
   const { slug } = context.params;
   const response = await prismic.getByUID('posts', String(slug), {});
 
+  const previousPost = await prismic.query(
+    [Prismic.Predicates.at('document.type', 'posts')],
+    {
+      pageSize: 1,
+      after: response.id,
+      orderings: '[document.first_publication_date]',
+    }
+  );
+
+  const laterPost = await prismic.query(
+    [Prismic.Predicates.at('document.type', 'posts')],
+    {
+      pageSize: 1,
+      after: response.id,
+      orderings: '[document.last_publication_date desc]',
+    }
+  );
+
   const post = {
     uid: response.uid,
     first_publication_date: response.first_publication_date,
@@ -158,9 +222,14 @@ export const getStaticProps: GetStaticProps = async context => {
     },
   };
 
+  // aqui são as props que estou enviando para o post
   return {
     props: {
       post,
+      suggestPosts: {
+        previousPost: previousPost?.results,
+        laterPost: laterPost?.results,
+      },
     },
   };
 };

@@ -54,3 +54,29 @@
     }
   }
 }
+
+.suggestPosts{
+    border-top: 1px solid var(--Body);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 5rem;
+
+    div{
+      margin-top: 3rem;
+      max-width: 160px;
+
+      strong{
+        font-size: 1.125rem;
+        color: var(--Heading);
+        font-weight: 400;
+      }
+
+      p{
+        font-size: 1rem;
+        color: var(--Highlight);
+        font-weight: 600;
+        margin-top: 0.5rem;
+      }
+    }
+}
